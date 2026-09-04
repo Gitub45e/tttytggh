@@ -37,6 +37,35 @@
       margin-bottom: 12px;
     }
 
+    .toolbar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .resource-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto 18px;
+      padding: 10px 14px;
+      border: 1px solid #30363d;
+      border-radius: 999px;
+      background: rgba(22, 27, 34, 0.9);
+    }
+
+    .resource-bar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
     input[type="text"] {
       width: 100%;
       max-width: 400px;
@@ -47,6 +76,25 @@
       color: var(--text);
       font-size: 1rem;
       outline: none;
+    }
+
+    select,
+    button {
+      padding: 12px 16px;
+      border-radius: 25px;
+      border: 1px solid #30363d;
+      background-color: #21262d;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      font-weight: 700;
     }
 
     .grid {
@@ -66,6 +114,36 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card-top {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 4px;
+    }
+
+    .favorite-btn {
+      background: rgba(255, 71, 87, 0.12);
+      border: 1px solid rgba(255, 71, 87, 0.4);
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 6px 9px;
+      border-radius: 999px;
+      min-width: 36px;
+    }
+
+    .favorite-btn.is-favorite {
+      background: var(--accent);
+      color: white;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 71, 87, 0.7);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .card img {
@@ -85,6 +163,105 @@
       color: var(--text-dim);
     }
 
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .featured {
+      max-width: 900px;
+      margin: 0 auto 24px;
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: minmax(220px, 320px) 1fr;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(255,71,87,0.12), rgba(22,27,34,0.9));
+      border: 1px solid #30363d;
+      border-radius: 18px;
+      padding: 20px;
+      align-items: center;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(13,17,23,0.5);
+      padding: 10px;
+    }
+
+    .featured-content h2 {
+      color: var(--accent);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 8px;
+    }
+
+    .feature-badge {
+      display: inline-block;
+      background: rgba(255,71,87,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(255,71,87,0.4);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .feature-meta {
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    .starter-section {
+      max-width: 900px;
+      margin: 0 auto 28px;
+    }
+
+    .starter-header {
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .starter-header h2 {
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+
+    .starter-header p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .starter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .starter-card {
+      min-height: 170px;
+      padding: 12px;
+    }
+
+    .filter-toggle.is-on {
+      background: white;
+      color: var(--accent);
+      border-color: white;
+    }
+
     .type-attack { color: #ff6b6b; }
     .type-defense { color: #4d96ff; }
     .type-stamina { color: #6bcb77; }
@@ -95,20 +272,64 @@
 
   <header>
     <h1>Beyblade Burst Collection</h1>
-    <input type="text" id="searchInput" placeholder="Search Beyblades..." onkeyup="filterBeys()">
+    <div class="toolbar">
+      <input type="text" id="searchInput" placeholder="Search Beyblades..." onkeyup="filterBeys()">
+      <select id="typeFilter" aria-label="Filter by Beyblade type">
+        <option value="All">All types</option>
+        <option value="Attack">Attack</option>
+        <option value="Defense">Defense</option>
+        <option value="Stamina">Stamina</option>
+        <option value="Balance">Balance</option>
+      </select>
+      <select id="sortSelect" aria-label="Sort Beyblades">
+        <option value="name-asc">Sort: Name A-Z</option>
+        <option value="name-desc">Sort: Name Z-A</option>
+        <option value="type-asc">Sort: Type A-Z</option>
+        <option value="owner-asc">Sort: Owner A-Z</option>
+      </select>
+      <button id="favoritesToggle" type="button" class="filter-toggle">Favorites only</button>
+      <button id="clearFilters" type="button">Clear</button>
+    </div>
+    <div class="resource-bar" aria-label="Beyblade resources">
+      <a href="https://www.beyblade.com/" target="_blank" rel="noopener noreferrer">Official site</a>
+      <a href="https://beyblade.fandom.com/wiki/Beyblade_Wiki" target="_blank" rel="noopener noreferrer">Wiki</a>
+      <a href="https://www.youtube.com/results?search_query=beyblade+beginner+guide" target="_blank" rel="noopener noreferrer">Beginner guides</a>
+    </div>
   </header>
   <section id="about" style="max-width:800px;margin:0 auto 16px;color:var(--text-dim);">
   <details open>
     <summary style="cursor:pointer;font-weight:700;color:var(--accent);">About Beyblade</summary>
     <p>Beyblade is a spinning-top battling game and anime franchise created by Takara Tomy in 1999. Players build tops (Beyblades) and launch them into an arena to knock opponents out or stop them from spinning. The series popularized battling mechanics, custom parts, and competitive formats.</p>
     <p><strong>Quick start:</strong> Learn the parts (layer, disc, driver), choose a playstyle (Attack/Defense/Stamina/Balance), and try simple launches to get consistent spins.</p>
-    <p><strong>Resources:</strong> Official site, Beyblade Wiki, and beginner video guides.</p>
+    <p><strong>Resources:</strong> 
+      <a href="https://www.beyblade.com/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;">Official site</a>,
+      <a href="https://beyblade.fandom.com/wiki/Beyblade_Wiki" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;">Beyblade Wiki</a>,
+      <a href="https://www.youtube.com/results?search_query=beyblade+beginner+guide" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;">beginner guides</a>.
+    </p>
   </details>
 </section>
 
+  <section class="featured" aria-label="Featured Beyblade"></section>
+  <section class="starter-section" aria-label="Starter 10 Beyblades">
+    <div class="starter-header">
+      <h2>Starter 10</h2>
+      <p>Great entry-point Beyblades for a new collection.</p>
+    </div>
+    <div class="starter-grid" id="starterGrid"></div>
+  </section>
+
   <main class="grid" id="beyContainer"></main>
 
+  <footer class="site-footer" style="max-width:800px;margin:28px auto 0;text-align:center;color:var(--text-dim);font-size:0.85rem;">
+    Beyblade Burst Vault • A growing collection of favorite tops and stats
+  </footer>
+
   <script> 
+    const favorites = new Set(JSON.parse(localStorage.getItem('beyblade-favorites') || '[]'));
+    const state = {
+      favoritesOnly: false
+    };
+
     const beyblades = [
       { name: "Victory Valkyrie", type: "Attack", owner: "Valt Aoi", image: "/victbey.png", description: "Strong attack-type known for aggressive combos.", series: "Burst", releaseYear: 2015, parts: { layer: "Victory", disc: "V-Disc", driver: "Attack Driver" } },
       { name: "Storm Spriggan", type: "Balance", owner: "Shu Kurenai", image: "/spriggan.png", description: "Versatile balance-type used for adaptive playstyles.", series: "Burst", releaseYear: 2016, parts: { layer: "Spriggan", disc: "Storm Disc", driver: "Balance Driver" } },
@@ -119,8 +340,100 @@
     ];
     beyblades.push(
         { name: "Drain Fafnir", type: "Stamina", owner: "Free De La Hoya", image: "/fafnir.png", description: "Left-spin stamina-type known for draining spin.", series: "Burst", releaseYear: 2016, parts: { layer: "Fafnir", disc: "Drain Disc", driver: "Defense Driver" } },
-        { name: "Cho-Z Valkyrie", type: "Attack", owner: "Valt Aoi", image: "/valkyrie.png", description: "Upgraded attack-type with extra burst power and speed.", series: "Burst", releaseYear: 2017, parts: { layer: "Cho-Z", disc: "Z-Disc", driver: "Cho Driver" } }
+        { name: "Cho-Z Valkyrie", type: "Attack", owner: "Valt Aoi", image: "/valkyrie.png", description: "Upgraded attack-type with extra burst power and speed.", series: "Burst", releaseYear: 2017, parts: { layer: "Cho-Z", disc: "Z-Disc", driver: "Cho Driver" } },
+        { name: "Abyss Roktavor", type: "Attack", owner: "Aiger Akabane", image: "/images/abyss-roktavor.svg", description: "Aggressive attack-type with strong burst pressure and fast movement.", series: "Burst", releaseYear: 2021, parts: { layer: "Roktavor", disc: "Abyss Disc", driver: "Attack Driver" } },
+        { name: "Guardian Garuda", type: "Defense", owner: "Arin Hanbin", image: "/images/guardian-garuda.svg", description: "Defense-focused Bey with sturdy stamina and counter-attack potential.", series: "Burst", releaseYear: 2020, parts: { layer: "Garuda", disc: "Guardian Disc", driver: "Defense Driver" } },
+        { name: "Raging Roktavor", type: "Balance", owner: "Aiger Akabane", image: "/images/raging-roktavor.svg", description: "A balanced finisher that can shift between offense and control.", series: "Burst", releaseYear: 2022, parts: { layer: "Roktavor", disc: "Raging Disc", driver: "Balance Driver" } },
+        { name: "Sonic Soaring", type: "Stamina", owner: "Lui Shirosagi", image: "/images/sonic-soaring.svg", description: "A stamina setup focused on long sustained rotation and stable energy.", series: "Burst", releaseYear: 2019, parts: { layer: "Soaring", disc: "Sonic Disc", driver: "Stamina Driver" } },
+        { name: "Lava Ldrago", type: "Attack", owner: "Rantaro", image: "/images/lava-ldrago.svg", description: "High-speed attack Bey built for explosive pressure and fast takedowns.", series: "Burst", releaseYear: 2016, parts: { layer: "Ldrago", disc: "Lava Disc", driver: "Attack Driver" } },
+        { name: "Legendary Lúna", type: "Balance", owner: "Riku", image: "/images/spriggan.svg", description: "A flexible Bey with smooth transitions between defense and offense.", series: "Burst", releaseYear: 2020, parts: { layer: "Lúna", disc: "Legend Disc", driver: "Balance Driver" } },
+        { name: "Titan Tusk", type: "Defense", owner: "Tayto", image: "/images/wyvern.svg", description: "Heavy defense Bey designed to absorb attacks and stay upright.", series: "Burst", releaseYear: 2018, parts: { layer: "Tusk", disc: "Titan Disc", driver: "Defense Driver" } },
+        { name: "Nova Naga", type: "Stamina", owner: "Ryo", image: "/images/zeus.svg", description: "Long-lasting stamina Bey that keeps spinning well into the endgame.", series: "Burst", releaseYear: 2021, parts: { layer: "Naga", disc: "Nova Disc", driver: "Stamina Driver" } },
+        { name: "Crimson Capricorn", type: "Attack", owner: "Hikaru", image: "/images/victbey.svg", description: "A bold attack-style Bey with sharp contact and a strong finish.", series: "Burst", releaseYear: 2017, parts: { layer: "Capricorn", disc: "Crimson Disc", driver: "Attack Driver" } },
+        { name: "Celestial Cygnus", type: "Balance", owner: "Aoi", image: "/images/spriggan.svg", description: "Balanced by design, useful for players who like rhythm and control.", series: "Burst", releaseYear: 2022, parts: { layer: "Cygnus", disc: "Celestial Disc", driver: "Balance Driver" } }
 );
+
+    const featuredBey = {
+      name: "Victory Valkyrie",
+      type: "Attack",
+      owner: "Valt Aoi",
+      series: "Burst",
+      releaseYear: 2015,
+      description: "An explosive attack-type that blends speed, power, and relentless pressure.",
+      image: "/victbey.png"
+    };
+
+    const starterTen = [
+      { name: "Victory Valkyrie", type: "Attack", image: "/victbey.png" },
+      { name: "Storm Spriggan", type: "Balance", image: "/spriggan.png" },
+      { name: "Kaiser Kerbeus", type: "Defense", image: "/kerbeus.png" },
+      { name: "Wild Wyvern", type: "Defense", image: "/wyvern.png" },
+      { name: "Zillion Zeus", type: "Stamina", image: "/zeus.png" },
+      { name: "Xeno Xcalius", type: "Attack", image: "/xcalius.png" },
+      { name: "Drain Fafnir", type: "Stamina", image: "/fafnir.png" },
+      { name: "Cho-Z Valkyrie", type: "Attack", image: "/valkyrie.png" },
+      { name: "Abyss Roktavor", type: "Attack", image: "/images/abyss-roktavor.svg" },
+      { name: "Guardian Garuda", type: "Defense", image: "/images/guardian-garuda.svg" }
+    ];
+
+    function renderFeatured() {
+      const section = document.querySelector('.featured');
+      section.innerHTML = `
+        <div class="featured-card">
+          <div class="featured-image">
+            <img src="${featuredBey.image}" alt="${featuredBey.name}" onerror="this.onerror=null;this.src='/placeholder.svg'">
+          </div>
+          <div class="featured-content">
+            <span class="feature-badge">Featured</span>
+            <h2>${featuredBey.name}</h2>
+            <p class="feature-meta">${featuredBey.type} • ${featuredBey.owner} • ${featuredBey.series} ${featuredBey.releaseYear}</p>
+            <p>${featuredBey.description}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveFavorites() {
+      localStorage.setItem('beyblade-favorites', JSON.stringify([...favorites]));
+    }
+
+    function toggleFavorite(name) {
+      if (favorites.has(name)) {
+        favorites.delete(name);
+      } else {
+        favorites.add(name);
+      }
+      saveFavorites();
+      filterBeys();
+    }
+
+    function getFilteredBeyblades() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const selectedType = document.getElementById('typeFilter')?.value || 'All';
+
+      let filtered = beyblades.filter(b => {
+        const matchesQuery = b.name.toLowerCase().includes(query) || b.owner.toLowerCase().includes(query) || b.type.toLowerCase().includes(query);
+        const matchesType = selectedType === 'All' || b.type === selectedType;
+        const matchesFavorite = !state.favoritesOnly || favorites.has(b.name);
+        return matchesQuery && matchesType && matchesFavorite;
+      });
+
+      return filtered;
+    }
+
+    function renderStarterList() {
+      const grid = document.getElementById('starterGrid');
+      grid.innerHTML = starterTen.map(item => `
+        <article class="card starter-card">
+          <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null;this.src='/placeholder.svg'">
+          <h3>${item.name}</h3>
+          <p class="type-${item.type.toLowerCase()}"><strong>Type:</strong> ${item.type}</p>
+        </article>
+      `).join('');
+    }
+
+    renderFeatured();
+    renderStarterList();
 
     function renderBeyblades(list) {
       const container = document.getElementById('beyContainer');
@@ -129,10 +442,14 @@
       list.forEach(bey => {
         const card = document.createElement('div');
         card.className = 'card';
-        const imgSrc = bey.image || '/placeholder.png';
+        const imgSrc = bey.image || '/placeholder.svg';
         const altText = bey.name || 'Beyblade image';
+        const isFavorite = favorites.has(bey.name);
         card.innerHTML = `
-          <img src="${imgSrc}" alt="${altText}" onerror="this.onerror=null;this.src='/placeholder.png'">
+          <div class="card-top">
+            <button type="button" class="favorite-btn ${isFavorite ? 'is-favorite' : ''}" data-name="${bey.name}" aria-label="${isFavorite ? 'Remove from favorites' : 'Add to favorites'}">${isFavorite ? '♥' : '♡'}</button>
+          </div>
+          <img src="${imgSrc}" alt="${altText}" onerror="this.onerror=null;this.src='/placeholder.svg'">
           <h3>${bey.name}</h3>
           <p class="type-${bey.type.toLowerCase()}"><strong>Type:</strong> ${bey.type}</p>
           <p><strong>Owner:</strong> ${bey.owner}</p>
@@ -161,22 +478,83 @@
             panel.innerHTML = `<p><strong>Series:</strong> ${bey.series || 'Unknown'}<br><strong>Release Year:</strong> ${bey.releaseYear || '—'}</p>`;
           }
         });
+
+        const favoriteButton = card.querySelector('.favorite-btn');
+        if (favoriteButton) {
+          favoriteButton.addEventListener('click', () => toggleFavorite(bey.name));
+        }
       });
+    }
+
+    function getSortedList(list) {
+      const sortValue = document.getElementById('sortSelect')?.value || 'name-asc';
+      const sorted = [...list];
+
+      sorted.sort((a, b) => {
+        const compareName = a.name.localeCompare(b.name);
+        const compareOwner = (a.owner || '').localeCompare(b.owner || '');
+        const compareType = (a.type || '').localeCompare(b.type || '');
+
+        switch (sortValue) {
+          case 'name-desc':
+            return b.name.localeCompare(a.name);
+          case 'type-asc':
+            return compareType || compareName;
+          case 'owner-asc':
+            return compareOwner || compareName;
+          case 'name-asc':
+          default:
+            return compareName;
+        }
+      });
+
+      return sorted;
     }
 
     function filterBeys() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const selectedType = document.getElementById('typeFilter')?.value || 'All';
-      const filtered = beyblades.filter(b => {
-        const matchesQuery = b.name.toLowerCase().includes(query) || b.owner.toLowerCase().includes(query) || b.type.toLowerCase().includes(query);
-        const matchesType = selectedType === 'All' || b.type === selectedType;
-        return matchesQuery && matchesType;
+      renderBeyblades(getSortedList(getFilteredBeyblades()));
+    }
+
+    function clearFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('typeFilter').value = 'All';
+      document.getElementById('sortSelect').value = 'name-asc';
+      state.favoritesOnly = false;
+      const favoritesButton = document.getElementById('favoritesToggle');
+      if (favoritesButton) {
+        favoritesButton.classList.remove('is-on');
+        favoritesButton.textContent = 'Favorites only';
+      }
+      renderBeyblades(getSortedList(beyblades));
+    }
+
+    const favoritesToggle = document.getElementById('favoritesToggle');
+    if (favoritesToggle) {
+      favoritesToggle.addEventListener('click', () => {
+        state.favoritesOnly = !state.favoritesOnly;
+        favoritesToggle.classList.toggle('is-on', state.favoritesOnly);
+        favoritesToggle.textContent = state.favoritesOnly ? 'Showing favorites' : 'Favorites only';
+        filterBeys();
       });
-      renderBeyblades(filtered);
+    }
+
+    const typeFilter = document.getElementById('typeFilter');
+    if (typeFilter) {
+      typeFilter.addEventListener('change', filterBeys);
+    }
+
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', filterBeys);
+    }
+
+    const clearButton = document.getElementById('clearFilters');
+    if (clearButton) {
+      clearButton.addEventListener('click', clearFilters);
     }
 
     // Initial render
-    renderBeyblades(beyblades);
+    renderBeyblades(getSortedList(beyblades));
   </script>
 
 </body>
