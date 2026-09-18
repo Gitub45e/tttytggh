@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220" role="img" aria-labelledby="title desc">
+  <title id="title">Beyblade placeholder</title>
+  <desc id="desc">Placeholder graphic for a Beyblade card image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ff4757"/>
+      <stop offset="100%" stop-color="#ffd93d"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="220" rx="20" fill="url(#bg)"/>
+  <g transform="translate(150 110)">
+    <circle r="58" fill="none" stroke="url(#ring)" stroke-width="14" opacity="0.9"/>
+    <circle r="28" fill="#f0f6fc" opacity="0.12"/>
+    <circle r="10" fill="#f0f6fc"/>
+    <path d="M-55 0 L-26 0 M26 0 L55 0 M0 -55 L0 -26 M0 26 L0 55" stroke="#f0f6fc" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+  </g>
+  <text x="150" y="185" text-anchor="middle" fill="#f0f6fc" font-size="20" font-family="Arial, sans-serif" font-weight="700">Beyblade</text>
+</svg>
