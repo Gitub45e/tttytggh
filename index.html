@@ -8,16 +8,17 @@
     <!-- Navigation -->
      <nav class="navbar">
       <u1>
-        <li><a href="Rippers.html">Rippers</a></li>
+        <li><a href="Makers.html">Makers</a></li>
+        <li><a href="Spinners.html">Spinners</a></li>
       </u1>
     </nav>
   <style>
     :root {
-      --bg-color: #0d1117;
+      --bg-color: #15ff00;
       --card-bg: #161b22;
-      --accent: #ff4757;
-      --text: #f0f6fc;
-      --text-dim: #8b949e;
+      --accent: #002fff;
+      --text: #ff0101;
+      --text-dim: #000a07;
     }
 
     * {
@@ -63,7 +64,7 @@
       padding: 10px 14px;
       border: 1px solid #30363d;
       border-radius: 999px;
-      background: rgba(22, 27, 34, 0.9);
+      background: rgba(23, 113, 240, 0.9);
     }
 
     .resource-bar a {
@@ -296,6 +297,7 @@
       </select>
       <button id="favoritesToggle" type="button" class="filter-toggle">Favorites only</button>
       <button id="clearFilters" type="button">Clear</button>
+      <button id="rippersToggle" type="button" class="filter-toggle">Rippers</button>
     </div>
     <div class="resource-bar" aria-label="Beyblade resources">
       <a href="https://www.beyblade.com/" target="_blank" rel="noopener noreferrer">Official site</a>
@@ -319,8 +321,8 @@
   <section class="featured" aria-label="Featured Beyblade"></section>
   <section class="starter-section" aria-label="Starter 10 Beyblades">
     <div class="starter-header">
-      <h2>Starter 10</h2>
-      <p>Great entry-point Beyblades for a new collection.</p>
+      <h2>Starter 9</h2>
+      <p>Great entry-point Beyblades for a new collection or gift.</p>
     </div>
     <div class="starter-grid" id="starterGrid"></div>
   </section>
@@ -337,17 +339,9 @@
       favoritesOnly: false
     };
 
-    const beyblades = [
-      { name: "Victory Valkyrie", type: "Attack", owner: "Valt Aoi", image: "/victbey.png", description: "Strong attack-type known for aggressive combos.", series: "Burst", releaseYear: 2015, parts: { layer: "Victory", disc: "V-Disc", driver: "Attack Driver" } },
-      { name: "Storm Spriggan", type: "Balance", owner: "Shu Kurenai", image: "/spriggan.png", description: "Versatile balance-type used for adaptive playstyles.", series: "Burst", releaseYear: 2016, parts: { layer: "Spriggan", disc: "Storm Disc", driver: "Balance Driver" } },
-      { name: "Kaiser Kerbeus", type: "Defense", owner: "Ken Midori", image: "/kerbeus.png", description: "Heavy defense-type with strong resilience.", series: "Burst", releaseYear: 2017, parts: { layer: "Kerbeus", disc: "K-Disc", driver: "Defense Driver" } },
-      { name: "Wild Wyvern", type: "Defense", owner: "Wakiya Murasaki", image: "/wyvern.png", description: "Durable defense-type designed to stay in the stadium.", series: "Burst", releaseYear: 2016, parts: { layer: "Wyvern", disc: "Wild Disc", driver: "Stamina Driver" } },
-      { name: "Zillion Zeus", type: "Stamina", owner: "Zac the Sunrise", image: "/zeus.png", description: "Stamina-focused bey that excels at outspinning opponents.", series: "Burst", releaseYear: 2018, parts: { layer: "Zeus", disc: "Z-Disc", driver: "Stamina Driver" } },
-      { name: "Xeno Xcalius", type: "Attack", owner: "Xander Shakadera", image: "/xcalius.png", description: "High-impact attack-type designed for burst finishes.", series: "Burst", releaseYear: 2019, parts: { layer: "Xcalius", disc: "X-Disc", driver: "Hyper Driver" } }
-    ];
+    const beyblades = [];
     beyblades.push(
         { name: "Drain Fafnir", type: "Stamina", owner: "Free De La Hoya", image: "/fafnir.png", description: "Left-spin stamina-type known for draining spin.", series: "Burst", releaseYear: 2016, parts: { layer: "Fafnir", disc: "Drain Disc", driver: "Defense Driver" } },
-        { name: "Cho-Z Valkyrie", type: "Attack", owner: "Valt Aoi", image: "/valkyrie.png", description: "Upgraded attack-type with extra burst power and speed.", series: "Burst", releaseYear: 2017, parts: { layer: "Cho-Z", disc: "Z-Disc", driver: "Cho Driver" } },
         { name: "Guardian Garuda", type: "Defense", owner: "Arin Hanbin", image: "GG2.png", description: "Defense-focused Bey with sturdy stamina and counter-attack potential.", series: "Burst", releaseYear: 2020, parts: { layer: "Garuda", disc: "Guardian Disc", driver: "Defense Driver" } },
         { name: "Raging Roktavor", type: "Balance", owner: "Aiger Akabane", image: "RRR2.png", description: "A balanced finisher that can shift between offense and control.", series: "Burst", releaseYear: 2022, parts: { layer: "Roktavor", disc: "Raging Disc", driver: "Balance Driver" } },
         { name: "Sonic Soaring", type: "Stamina", owner: "Lui Shirosagi", image: "SS3.png", description: "A stamina setup focused on long sustained rotation and stable energy.", series: "Burst", releaseYear: 2019, parts: { layer: "Soaring", disc: "Sonic Disc", driver: "Stamina Driver" } },
@@ -367,8 +361,7 @@
       description: "An explosive attack-type that blends speed, power, and relentless pressure.",
       image: "/victbey.png"
     };
-
-    const starterTen = [
+    const starterNine = [
       { name: "Victory Valkyrie", type: "Attack", image: "/victbey.png" },
       { name: "Storm Spriggan", type: "Balance", image: "/spriggan.png" },
       { name: "Kaiser Kerbeus", type: "Defense", image: "/kerbeus.png" },
@@ -379,7 +372,7 @@
       { name: "Cho-Z Valkyrie", type: "Attack", image: "/valkyrie.png" },
       { name: "Abyss Roktavor", type: "Attack", image: "abyss-roktavor.png" },
     ];
-
+  
     function renderFeatured() {
       const section = document.querySelector('.featured');
       section.innerHTML = `
@@ -427,7 +420,7 @@
 
     function renderStarterList() {
       const grid = document.getElementById('starterGrid');
-      grid.innerHTML = starterTen.map(item => `
+      grid.innerHTML = starterNine.map(item => `
         <article class="card starter-card">
           <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null;this.src='/placeholder.svg'">
           <h3>${item.name}</h3>

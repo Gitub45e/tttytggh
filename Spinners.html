@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  !-- Navigation -->
+     <nav class="navbar">
+      <u1>
+        <li><a href="Makers.html">Makers</a></li>
+        <li><a href="index.html">Home</a></li>
+      </u1>
+    </nav>
+  <style>
+    :root {
+      --bg-color: #15ff00;
+      --card-bg: #161b22;
+      --accent: #002fff;
+      --text: #ff0101;
+      --text-dim: #000a07;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text);
+      padding: 16px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .resource-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto 18px;
+      padding: 10px 14px;
+      border: 1px solid #30363d;
+      border-radius: 999px;
+      background: rgba(23, 113, 240, 0.9);
+    }
+
+    .resource-bar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 12px 16px;
+      border-radius: 25px;
+      border: 1px solid #30363d;
+      background-color: #21262d;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    select,
+    button {
+      padding: 12px 16px;
+      border-radius: 25px;
+      border: 1px solid #30363d;
+      background-color: #21262d;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card-top {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 4px;
+    }
+
+    .favorite-btn {
+      background: rgba(255, 71, 87, 0.12);
+      border: 1px solid rgba(255, 71, 87, 0.4);
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 6px 9px;
+      border-radius: 999px;
+      min-width: 36px;
+    }
+
+    .favorite-btn.is-favorite {
+      background: var(--accent);
+      color: white;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 71, 87, 0.7);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .featured {
+      max-width: 900px;
+      margin: 0 auto 24px;
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: minmax(220px, 320px) 1fr;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(255,71,87,0.12), rgba(22,27,34,0.9));
+      border: 1px solid #30363d;
+      border-radius: 18px;
+      padding: 20px;
+      align-items: center;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(13,17,23,0.5);
+      padding: 10px;
+    }
+
+    .featured-content h2 {
+      color: var(--accent);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 8px;
+    }
+
+    .feature-badge {
+      display: inline-block;
+      background: rgba(255,71,87,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(255,71,87,0.4);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .feature-meta {
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    .starter-section {
+      max-width: 900px;
+      margin: 0 auto 28px;
+    }
+
+    .starter-header {
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .starter-header h2 {
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+
+    .starter-header p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .starter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .starter-card {
+      min-height: 170px;
+      padding: 12px;
+    }
+
+    .filter-toggle.is-on {
+      background: white;
+      color: var(--accent);
+      border-color: white;
+    }
+
+    .type-attack { color: #ff6b6b; }
+    .type-defense { color: #4d96ff; }
+    .type-stamina { color: #6bcb77; }
+    .type-balance { color: #ffd93d; }
+  </style>
+</head>
+<body>
+  <title>Spinners</title>
+</head>
+<body>
+  <header>
+    <h1>Spinners</h1>
+  </header>
+  <main>
+    <p>Welcome to the Spinners section!</p>
+  </main>
+</body>
+<img src="1st.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the first spinner image.">
+<img src="2nd.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the second spinner image.">
+<img src="3rd.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the third spinner image.">
+<img src="4th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the fourth spinner image.">
+<img src="5th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the fifth spinner image.">
+<img src="6th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the sixth spinner image.">
+<img src="7th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the seventh spinner image.">
+<img src="8th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the eighth spinner image.">
+<img src="9th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the ninth spinner image.">
+<img src="10th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the tenth spinner image.">
+<img src="11th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the eleventh spinner image.">
+<img src="12th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the twelfth spinner image.">
+<img src="13th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the thirteenth spinner image.">
+<img src="14th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the fourteenth spinner image.">
+<img src="15th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the fifteenth spinner image.">
+<img src="16th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the sixteenth spinner image.">
+<img src="17th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the seventeenth spinner image.">
+<img src="18th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the eighteenth spinner image.">
+<img src="19th.png" alt="Spinner Image" style="width: 200px; height: auto;" description="This is the nineteenth spinner image.">
+</html>
