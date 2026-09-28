@@ -1,0 +1,9 @@
+<!-- Navigation -->
+     <nav class="navbar">
+      <u1>
+        <li><a href="Makers.html">Makers</a></li>
+        <li><a href="Spinners.html">Spinners</a></li>
+        <li><a href ="Info.html">Info</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+        </u1>
